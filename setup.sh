@@ -11,3 +11,6 @@ vim +PlugInstall +qall
 git config --global diff.tool vimdiff
 git config --global difftool.prompt false
 git config --global alias.d difftool
+
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JetBrains/JetBrainsMono/master/install_manual.sh)"
+
