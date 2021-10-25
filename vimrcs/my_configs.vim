@@ -2,6 +2,7 @@ set nu
 set splitbelow
 set splitright
 set mouse=a
+set relativenumber
 
 """"""""""""""""""""""""""""""
 " => Load vim-plug
@@ -19,8 +20,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'
   Plug 'airblade/vim-gitgutter'
   Plug 'miyakogi/conoline.vim'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'dominikduda/vim_current_word'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
