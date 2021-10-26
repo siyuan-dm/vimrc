@@ -4,6 +4,11 @@ set splitright
 set mouse=a
 set relativenumber
 
+" Disable color on bars
+hi SignColumn guibg=NONE ctermbg=NONE
+" hi LineNr ctermfg=NONE ctermbg=NONE
+hi VertSplit ctermbg=NONE
+
 """"""""""""""""""""""""""""""
 " => Load vim-plug
 """"""""""""""""""""""""""""""
@@ -23,7 +28,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'dominikduda/vim_current_word'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'ryanoasis/vim-devicons'
-  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plug 'preservim/nerdcommenter'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -83,9 +88,25 @@ let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd'
 let g:conoline_color_insert_dark = 'guibg=white guifg=white'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_current_word 
+" => vim_current_word
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Twins of word under cursor:
 let g:vim_current_word#highlight_twins = 1
 " The word under cursor:
 let g:vim_current_word#highlight_current_word = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => gitgutter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:gitgutter_enabled = 1
+let g:gitgutter_highlight_lines = 1
+let g:gitgutter_highlight_linenrs = 1
+let g:gitgutter_signs = 1
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => NerdCommenter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDSpaceDelims = 1

@@ -168,13 +168,6 @@ let g:ale_lint_on_enter = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Git gutter (Git diff)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled=0
-nnoremap <silent> <leader>d :GitGutterToggle<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => EditorConfig (project-specific EditorConfig rule)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
