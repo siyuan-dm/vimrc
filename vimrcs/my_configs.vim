@@ -2,12 +2,20 @@ set nu
 set splitbelow
 set splitright
 set mouse=a
-set relativenumber
+set cursorline
+
 
 " Disable color on bars
 hi SignColumn guibg=NONE ctermbg=NONE
 " hi LineNr ctermfg=NONE ctermbg=NONE
 hi VertSplit ctermbg=NONE
+
+" Hightlight current line
+"augroup CursorLine
+  "au!
+  "au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  "au WinLeave * setlocal nocursorline
+"augroup END
 
 """"""""""""""""""""""""""""""
 " => Load vim-plug
@@ -15,7 +23,6 @@ hi VertSplit ctermbg=NONE
 call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdtree'
-  Plug 'rhysd/vim-clang-format'
   Plug '907th/vim-auto-save'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Search
   Plug 'junegunn/fzf.vim'
@@ -29,12 +36,14 @@ call plug#begin('~/.vim/plugged')
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'ryanoasis/vim-devicons'
   Plug 'preservim/nerdcommenter'
+  Plug 'google/vim-maktaba'
+  Plug 'google/vim-codefmt' " Must follow vim-maktaba
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim-clang-format
+" => vim-codefmt
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <silent> <leader>ff :ClangFormat<CR>
+map <silent> <leader>ff :FormatCode<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc setting
@@ -84,8 +93,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " => conoline: highlight current line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:conoline_auto_enable = 1
-let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd'
-let g:conoline_color_insert_dark = 'guibg=white guifg=white'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim_current_word
@@ -109,4 +116,29 @@ highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => NerdCommenter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+
+" Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+" Enable NERDCommenterToggle to check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
