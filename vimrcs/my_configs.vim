@@ -6,7 +6,7 @@ set cursorline
 
 
 " Disable color on bars
-hi SignColumn guibg=NONE ctermbg=NONE
+"hi SignColumn guibg=NONE ctermbg=NONE
 " hi LineNr ctermfg=NONE ctermbg=NONE
 hi VertSplit ctermbg=NONE
 
@@ -38,7 +38,11 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdcommenter'
   Plug 'google/vim-maktaba'
   Plug 'google/vim-codefmt' " Must follow vim-maktaba
+  Plug 'dracula/vim'
 call plug#end()
+
+set termguicolors
+color dracula
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-codefmt
