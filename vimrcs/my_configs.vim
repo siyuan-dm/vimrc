@@ -3,10 +3,11 @@ set splitbelow
 set splitright
 set mouse=a
 set cursorline
+set guicursor=a:blinkon100
 
 
 " Disable color on bars
-"hi SignColumn guibg=NONE ctermbg=NONE
+hi SignColumn guibg=NONE ctermbg=NONE
 " hi LineNr ctermfg=NONE ctermbg=NONE
 hi VertSplit ctermbg=NONE
 
