@@ -22,7 +22,7 @@ hi VertSplit ctermbg=NONE
 " => Load vim-plug
 """"""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'preservim/nerdtree'
   Plug '907th/vim-auto-save'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " Search
@@ -33,13 +33,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'
   Plug 'airblade/vim-gitgutter'
   Plug 'miyakogi/conoline.vim'
-  Plug 'dominikduda/vim_current_word'
+  " Plug 'dominikduda/vim_current_word'
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'ryanoasis/vim-devicons'
   Plug 'preservim/nerdcommenter'
   Plug 'google/vim-maktaba'
   Plug 'google/vim-codefmt' " Must follow vim-maktaba
   Plug 'dracula/vim'
+  Plug 'RRethy/vim-illuminate'
+  Plug 'ycm-core/YouCompleteMe'
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 call plug#end()
 
 set termguicolors
@@ -53,13 +59,13 @@ map <silent> <leader>ff :FormatCode<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Coc setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:coc_disable_startup_warning = 1
+" let g:coc_disable_startup_warning = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto Save
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:auto_save = 1  " enable AutoSave on Vim startup
-let g:auto_save_silent = 1  " do not display the auto-save notification
+let g:auto_save_silent = 0  " do not display the auto-save notification
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fzf setting
@@ -98,14 +104,6 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " => conoline: highlight current line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:conoline_auto_enable = 1
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => vim_current_word
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Twins of word under cursor:
-let g:vim_current_word#highlight_twins = 1
-" The word under cursor:
-let g:vim_current_word#highlight_current_word = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => gitgutter
@@ -147,3 +145,26 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim-illuminate 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:Illuminate_highlightUnderCursor = 0
+hi illuminatedWordk ctermbg=15 guibg=#FFFFFF ctermfg=4 guifg=#8b0000
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ycm 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd")
+let g:LanguageClient_serverCommands = {
+  \ 'cpp': ['clangd'],
+  \ }
+" note that if you are using Plug mapping you should not use `noremap` mappings.
+nmap <F5> <Plug>(lcn-menu)
+" Or map each action separately
+nmap <silent>K <Plug>(lcn-hover)
+nmap <silent> gd <Plug>(lcn-definition)
+nmap <silent> <F2> <Plug>(lcn-rename)
