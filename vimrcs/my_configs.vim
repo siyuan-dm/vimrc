@@ -155,16 +155,29 @@ hi illuminatedWordk ctermbg=15 guibg=#FFFFFF ctermfg=4 guifg=#8b0000
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ycm 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_goto_buffer_command = 'new-or-existing-tab'
 " Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
 let g:ycm_clangd_binary_path = exepath("clangd")
+let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 let g:LanguageClient_serverCommands = {
   \ 'cpp': ['clangd'],
   \ }
+let g:ycm_global_ycm_extra_conf =
+  \ '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
 " note that if you are using Plug mapping you should not use `noremap` mappings.
 nmap <F5> <Plug>(lcn-menu)
 " Or map each action separately
 nmap <silent>K <Plug>(lcn-hover)
 nmap <silent> gd <Plug>(lcn-definition)
 nmap <silent> <F2> <Plug>(lcn-rename)
+
+set cursorline
+hi CursorLine cterm=none ctermbg=237
+set cursorcolumn
+hi CursorColumn cterm=none ctermbg=237
+
+" Highlight column 80 as well as 100 and onward.
+" Google java style accepts a column limit of either 80 or 100 characters.
+let &colorcolumn = '80,'.join(range(100,256),',')
