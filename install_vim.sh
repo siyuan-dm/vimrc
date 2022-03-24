@@ -39,3 +39,6 @@ VERSION="0.5.2"
   && sudo curl -L "https://github.com/grailbio/bazel-compilation-database/archive/${VERSION}.tar.gz" | sudo tar -xz \
   && sudo ln -f -s "${INSTALL_DIR}/bazel-compilation-database-${VERSION}/generate.py" bazel-compdb
 )
+
+wget https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-musl_0.20.0_amd64.deb
+sudo dpkg -i bat_0.18.3_amd64.deb
