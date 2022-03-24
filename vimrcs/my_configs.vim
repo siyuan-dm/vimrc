@@ -46,6 +46,7 @@ call plug#begin('~/.vim/plugged')
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+  Plug 'preservim/tagbar'
 call plug#end()
 
 set termguicolors
@@ -181,3 +182,13 @@ hi CursorColumn cterm=none ctermbg=237
 " Highlight column 80 as well as 100 and onward.
 " Google java style accepts a column limit of either 80 or 100 characters.
 let &colorcolumn = '80,'.join(range(100,256),',')
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => UltiSnips 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_key_list_select_completion = ['<C-j>']
+let g:ycm_key_list_previous_completion = ['<C-k>']
+
+let g:UltiSnipsExpandTrigger = "<C-l>"
+let g:UltiSnipsJumpForwardTrigger = "<C-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-k>"
